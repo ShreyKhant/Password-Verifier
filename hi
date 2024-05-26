@@ -1,0 +1,21 @@
+# Password Checker
+name = input("Whats your name?\n")
+password = input("Create your password\n")
+passwords = {name: password}
+login = input('Enter your password\n')
+attempts = 2
+if login == passwords[name]:
+    print("Access Granted")
+
+else:
+    while attempts > 0:
+        login = input("Incorrect password. Try again\n")
+        attempts = attempts - 1
+        if login == passwords[name]:
+            print("Access Granted")
+            break
+        if attempts == 1:
+            print("WARNING: YOU HAVE COMPLETED YOUR SECOND TRY. THIS WILL BE YOUR LAST TRY BEFORE YOUR ACCOUNT GETS LOCKED.")
+    else:
+        print("Your account is locked. Please try again later.")
+        attempts = attempts - 1
