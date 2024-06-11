@@ -1,0 +1,59 @@
+# Password Verifier (v.0.2)
+print("Welcome to Password verifier(v.0.2). It is more updated and has more features from the previous version.")
+name = input("What's your name?\n")
+password = input("Create your password: ")
+passwords = {name: password}
+
+def password_verifier():
+    login = input('Enter your password: ')
+    attempts = 3
+
+    while attempts > 0:
+        if login == passwords[name]:
+            print("Access Granted")
+            print("Credits:",end='\n' "Made by Shrey")
+            return
+        else:
+            attempts -= 1
+            if attempts > 0:
+                print("Incorrect password. Try again")
+                if attempts == 1:
+                    print("WARNING: YOU HAVE COMPLETED YOUR SECOND TRY. THIS WILL BE YOUR LAST TRY BEFORE YOUR ACCOUNT GETS LOCKED.")
+                login = input("Enter your password: ")
+            else:
+                print("You have exhausted all the attempts and your account is locked.")
+                break
+    
+    def reset_password():
+        if attempts == 0:
+            later_attempts = 3
+            continue_login = input("Do you want to Reset your password? (yes/no): ").lower().strip()
+            if continue_login in ["yes", "y"]:
+                new_password = input("Enter your new password: ")
+                passwords[name] = new_password
+                print("Your password has been updated successfully.")
+                login = input("Enter your new password to get Access: ")
+
+                while later_attempts > 0:
+                    if login == passwords[name]:
+                        print("Access Granted")
+                        print("Credits:",end='\n' "Made by Shrey")
+                        return
+                    else:
+                        later_attempts -= 1
+                        if later_attempts > 0:
+                            print("Incorrect password. Try again")
+                            login = input("Enter your new password: ")
+                        else:
+                            print("You have exhausted all the attempts and your account is locked.")
+                            print("Credits:\nMade by Shrey")
+                            return
+            elif continue_login in ["no", "n"]:
+                print("Thank You")
+                print("Credits:",end='\n' "Made by Shrey")
+            else:
+                print("Invalid Option. Please select 'yes' or 'no' to reset your password")
+                reset_password()
+                
+    reset_password()
+password_verifier()
